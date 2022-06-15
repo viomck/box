@@ -1,0 +1,14 @@
+server {
+	listen 80;
+	server_name violet.wtf www.violet.wtf viomck.com www.viomck.com;
+
+	root /var/www/website-build;
+
+	location / {
+		if ( $query_string = "go-get=1" ) {
+			return 302 https://github.com/viomckinney$request_uri;
+		}
+
+		try_files $uri $uri/index.html $uri.html /index.html;
+	}
+}
